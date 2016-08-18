@@ -1,0 +1,26 @@
+{
+  "name": "rps",
+  "version": "1.0.0",
+  "description": "Rock Paper Scissors",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "^3.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcampuza/rps.git"
+  },
+  "author": "Joseph Campuzano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcampuza/rps/issues"
+  },
+  "homepage": "https://github.com/jcampuza/rps#readme"
+}
