@@ -35,19 +35,18 @@ header {
 
 .player-container {
   width: 1170px;
-  background-color: white;
   color: #343838;
-  font-size: 0;
-  padding: 20px;
-  border-radius: 2px;
-  border: 2px solid #005F6B;
   height: 250px;
   margin: 0 auto 35px; }
   .player-container .player {
     display: inline-block;
-    width: 50%; }
-    .player-container .player:nth-child(2) {
-      text-align: right; }
+    background-color: white;
+    height: 250px;
+    width: 45%;
+    margin: 0 2.25%;
+    border: 2px solid #005F6B;
+    border-radius: 2px;
+    text-align: center; }
 
 .player-records {
   width: 1170px;
