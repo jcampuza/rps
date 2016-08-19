@@ -27,9 +27,20 @@
 	<div class="player-container">
 		<div class="player">
 			<h3>Player</h3>
+			<div class="last-action">
+				<img id="player-action" src="img/scissors.jpg" />
+			</div>
+			<ul class="actions">
+				<li id="rock">Rock</li>
+				<li id="paper">Paper</li>
+				<li id="scissors">Scissors</li>
+			</ul>
 		</div>
 		<div class="player">
 			<h3>Bot</h3>
+			<div class="last-action">
+				<img id="bot-action" />
+			</div>
 		</div>
 	</div>
 	<div class="player-records">
@@ -38,17 +49,6 @@
 		<div class="player-stat loss">LOSS</div>
 	</div>
 
-	<div class="player-actions">
-		<div class="action">
-			Rock
-		</div>
-		<div class="action">
-			Paper
-		</div>
-		<div class="action">
-			Scissors
-		</div>
-	</div>
 
 	<div class="timer">
 		<form id="set-timer">
@@ -64,7 +64,7 @@
 	</div>
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

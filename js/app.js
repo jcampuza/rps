@@ -4,8 +4,9 @@ var setMinutes = document.getElementById('set-minutes');
 var setSeconds = document.getElementById('set-seconds');
 var form = $('#set-timer');
 
-
-console.log('Lets play');
+var rock = document.getElementById('rock');
+var paper = document.getElementById('paper');
+var scissors = document.getElementById('scissors');
 
 var Timer = function() {
 	var start = $('#set-timer'),
@@ -38,7 +39,7 @@ var Timer = function() {
 	}	
 
 	function runTimer() {
-		interval = setInterval(updateSeconds, 50);
+		interval = setInterval(updateSeconds, 1000);
 	}
 
 	function updateSeconds() {
@@ -68,7 +69,9 @@ var Timer = function() {
 	this.runTimer = runTimer;
 }
 
+var Game = function() {
 
+}
 var stopwatch = new Timer();
 
 form.on('submit', function(e) {
@@ -76,15 +79,27 @@ form.on('submit', function(e) {
 	console.log(randomAction());
 	stopwatch.setTimer();
 	stopwatch.runTimer();
-})
+});
 
 /* Let the bot choose a random action */
 function randomAction() {
 	actions = {
-		0: 'Rock',
-		1: 'Paper',
-		2: 'Scissors'
+		0: 'rock',
+		1: 'paper',
+		2: 'scissors'
 	};
 	var randomAction = Math.floor(Math.random() * 3);
 	return actions[randomAction];
 }
+
+function roShamBo() {
+	var els = document.querySelectorAll('li');
+	for (var i = 0; i < els.length; i++) {
+		els[i].addEventListener('click', function() {
+			document.getElementById('player-action').src = "img/" + this.innerHTML.toLowerCase() + ".jpg";
+			document.getElementById('bot-action').src = "img/" + randomAction() + ".jpg";
+		});
+	}
+}
+
+roShamBo();

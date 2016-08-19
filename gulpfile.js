@@ -18,7 +18,7 @@ gulp.task('webserver', function() {
 // Sass compilation 
 gulp.task('build-css', function() {
 	return gulp.src('scss/**/*.scss')
-	  .pipe(sass())
+	  .pipe(sass().on('error', sass.logError))
 	  .pipe(gulp.dest('css'))
 	  .pipe(connect.reload());
 });

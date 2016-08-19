@@ -41,15 +41,46 @@ header {
 	color: #343838;
 	height: 250px;
 	margin: 0 auto 35px;
+	text-align: center;
 	.player {
+		position: relative;
 		display: inline-block;
+		vertical-align: top;
 		background-color: white;
 		height: 250px;
-		width: 45%;
-		margin: 0 2.25%;
+		width: 40%;
+		margin: 0 30px;
 		border: 2px solid #005F6B;
 		border-radius: 2px;
 		text-align: center;
+		.last-action {
+			position: absolute;
+			left: 35%;
+			top: 20%;
+			height: 60%;
+			img {
+				height: 100%;
+			}
+		}
+		.actions {
+			list-style-type: none;
+			padding: 0;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			margin: 0 auto 10px;
+			left: 0;
+			li {
+				display: block;
+				float: left;
+				background-color: #005F6B;
+				padding: 0;
+				width: 25%;
+				padding: 5px;
+				margin: 0 3%;
+				border-radius: 2px;
+			}
+		}
 	}
 }
 
@@ -72,6 +103,10 @@ header {
 		width: 33%;
 		text-align: center;
 		border-radius: 2px;
+		cursor: pointer;
+		&:active {
+			background-color: #00B4CC;
+		}
 	}
 }
 
