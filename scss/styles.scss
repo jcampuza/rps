@@ -1,3 +1,6 @@
+//CSS Breakpoints 1000px, 760px, 480px
+
+
 body {
 	background-color: #343838;
 	font-size: 18px;
@@ -26,7 +29,6 @@ h4 {
 h5 {
 	font-size: 20px;
 }
-
 /* header styles */
 header {
 	background-color: #005F6B;
@@ -36,8 +38,13 @@ header {
 	margin-bottom: 35px;
 }
 
-.player-container {
+.content {
 	width: 1170px;
+	margin: 0 auto;
+}
+
+.player-container {
+	width: 100%;
 	color: #343838;
 	height: 250px;
 	margin: 0 auto 35px;
@@ -53,6 +60,12 @@ header {
 		border: 2px solid #005F6B;
 		border-radius: 2px;
 		text-align: center;
+		.title {
+			width: 100%;
+			background-color: gray;
+			box-shadow: 0px 1px 2px black;
+		}
+
 		.last-action {
 			position: absolute;
 			left: 35%;
@@ -71,6 +84,9 @@ header {
 			margin: 0 auto 10px;
 			left: 0;
 			li {
+				-webkit-user-select: none;
+				color: #fff;
+				cursor: pointer;
 				display: block;
 				float: left;
 				background-color: #005F6B;
@@ -85,12 +101,25 @@ header {
 }
 
 .player-records {
-	width: 1170px;
-	margin: 0 auto 50px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 25px;
 	.player-stat {
 		display: inline-block;
-		width: 33%;
-		text-align: center;
+		vertical-align: top;
+		color: red;
+		background-color: rgba(0,0,0,.8);
+		margin: 0 55px;
+		width: 150px;
+		height: 75px;
+		border-radius: 2px;
+		border: 1px solid white;
+		label {
+			display: block;
+			width: 100%;
+			background-color: gray;
+			color: #343838;
+		}
 	}
 }
 
