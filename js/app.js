@@ -1,12 +1,20 @@
+// Option elements (time/play)
 var min = document.getElementById('minutes');
 var seconds = document.getElementById('seconds');
 var setMinutes = document.getElementById('set-minutes');
 var setSeconds = document.getElementById('set-seconds');
 var form = $('#set-timer');
 
+// Player Actions
 var rock = document.getElementById('rock');
 var paper = document.getElementById('paper');
 var scissors = document.getElementById('scissors');
+
+// Scoreboard Elements
+var wins = document.getElementById('win');
+var losses = document.getElementById('loss');
+var ties = document.getElementById('tie');
+
 
 var Timer = function() {
 	var start = $('#set-timer'),
@@ -69,9 +77,6 @@ var Timer = function() {
 	this.runTimer = runTimer;
 }
 
-var Game = function() {
-
-}
 var stopwatch = new Timer();
 
 form.on('submit', function(e) {
@@ -92,14 +97,53 @@ function randomAction() {
 	return actions[randomAction];
 }
 
+/* Function to update score, if passed no arguments, will reset the score back to default (0,0,0);
+ * otherwise, it takes two arguments, the players action, and bots action. Decides the winner, and 
+ * updates the score accordingly
+ */
+function updateScore() {
+	var args = Array.prototype.slice.call(arguments);
+	var winValue = parseInt(wins.innerHTML),
+	    lossValue = parseInt(losses.innerHTML),
+	    tieValue = parseInt(ties.innerHTML);
+
+	// if no arguments, or the arguments are equal, then reset the scoreboard or add 1 to ties
+	if (!args.length) {
+		wins.innerHTML = "0";
+		losses.innerHTML = "0";
+		ties.innerHTML = "0";
+		return;
+	} else if (args[0] == args[1]) {
+		ties.innerHTML = tieValue + 1;
+		return;
+	}
+
+	// Otherwise check arguments for win state
+	switch (args[0]) {
+		case 'rock':
+			args[1] == 'scissors' ? wins.innerHTML = winValue + 1 : losses.innerHTML = lossValue + 1;
+			break;
+		case 'paper':
+			args[1] == 'rock' ? wins.innerHTML = winValue + 1 : losses.innerHTML = lossValue + 1;
+			break;
+		case 'scissors':
+			args[1] == 'paper' ? wins.innerHTML = winValue + 1 : losses.innerHTML = lossValue + 1;
+			break;
+	}
+}
+
 function roShamBo() {
 	var els = document.querySelectorAll('li');
 	for (var i = 0; i < els.length; i++) {
 		els[i].addEventListener('click', function() {
-			document.getElementById('player-action').src = "img/" + this.innerHTML.toLowerCase() + ".jpg";
-			document.getElementById('bot-action').src = "img/" + randomAction() + ".jpg";
+			var playerAction = this.innerHTML.toLowerCase();
+			var botAction = randomAction();
+			updateScore(playerAction, botAction);
+			document.getElementById('player-action').src = "img/" + playerAction + ".jpg";
+			document.getElementById('bot-action').src = "img/" + botAction + ".jpg";
 		});
 	}
 }
 
 roShamBo();
+
