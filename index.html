@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<title>Rock Paper Scissors!</title>
 
+	<!-- font awesome -->
 	<script src="https://use.fontawesome.com/d71012168b.js"></script>
 
 	<!-- fonts -->
@@ -21,6 +22,7 @@
 
 <body>
 	<div class="content">
+		<!-- Scoreboard -->
 		<div class="scoreboard">
 			<div class="score">
 				<label>PLAYER</label><br/>
@@ -35,7 +37,9 @@
 				<span id="loss">0</span>
 			</div>
 		</div>
+		<!-- End Scoreboard -->
 
+		<!-- Main game content -->
 		<div class="game">
 			<div class="player">
 				<label class="title">COMPUTER</label>
@@ -43,28 +47,28 @@
 					<span id="bot-action" class="fa fa-hand-rock-o fa-5x"></span>
 				</div>
 			</div>
-
-			<div class="timer">
-				<div class="timer-set">
-					<form id="set-timer">
-		  			<input type="number" id="set-minutes" class="timer-input" min="0" placeholder="mins"/>
-		  			<span>:</span>
-		  			<input type="number" id="set-seconds" class="timer-input" min="0" placeholder="secs"/>
-		  			<input type="submit" hidden>
-		  			</form>
-		  		</div>
-		  		<div class="timer-show timer-hide">
-		    		<span id="minutes" class="timer-display">00</span>
-		    		<span>:</span>
-		    		<span id="seconds" class="timer-display">00</span>
-		  		</div>
-			</div><!--
-			--><div class="button-set">
-				<button id="play"><span class="fa fa-play"></span></button><!--
-			--><button id="reset"><span class="fa fa-refresh"></span></button><!--
-			--><button id="pause"><span class="fa fa-pause"></span></button>
+			<div class="controls">
+				<div class="timer">
+					<div class="timer-set">
+						<form id="set-timer">
+			  			<input type="number" id="set-minutes" class="timer-input" min="0" placeholder="mins"/>
+			  			<span>:</span>
+			  			<input type="number" id="set-seconds" class="timer-input" min="0" placeholder="secs"/>
+			  			<input type="submit" hidden>
+			  			</form>
+			  		</div>
+			  		<div class="timer-show timer-hide">
+			    		<span id="minutes" class="timer-display">00</span>
+			    		<span>:</span>
+			    		<span id="seconds" class="timer-display">00</span>
+			  		</div>
+				</div><!--
+				--><div class="button-set">
+					<button id="play"><span class="fa fa-play"></span></button><!--
+				--><button id="reset"><span class="fa fa-refresh"></span></button><!--
+				--><button id="pause"><span class="fa fa-pause"></span></button>
+				</div>
 			</div>
-
 			<div class="player">
 				<label class="title">PLAYER</label>
 				<div class="last-action">
@@ -72,15 +76,29 @@
 				</div>
 			</div>
 		</div>
+		<!-- End main game content -->
 
+		<!-- Action group -->
 		<ul class="actions">
 			<li id="action">Rock</li>
 			<li id="action">Paper</li>
 			<li id="action">Scissors</li>
 		</ul>
+		<!-- End action group -->
+	</div>
+	<!-- End main page content -->
+
+	<!-- Popups -->
+	<div class="result-popup">
+		<label id="result">YOU WIN!</label>
+	</div>
+	<div class="warning-popup">
+		<label>10 SECONDS LEFT!</label>
 	</div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/timer.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

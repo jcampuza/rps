@@ -1,6 +1,7 @@
 // get gulp package
 var gulp = require('gulp'), gutil = require('gulp-util');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer')
 var connect = require('gulp-connect');
 
 // Default task to watch files 
@@ -19,6 +20,7 @@ gulp.task('webserver', function() {
 gulp.task('build-css', function() {
 	return gulp.src('scss/**/*.scss')
 	  .pipe(sass().on('error', sass.logError))
+	  .pipe(autoprefixer())
 	  .pipe(gulp.dest('css'))
 	  .pipe(connect.reload());
 });
