@@ -35,9 +35,15 @@ var Timer = function(endCallback) {
 		}
 	}	
 
-	// Start running the timer (updates every second);
+	// Start running the timer (updates every second). returns true if the timer started.
+	// If no values were provided for the timer, returns false to prevent running the timer on
+	// a zero value.
 	function runTimer() {
+		if (!setSeconds.value && !setMinutes.value) {
+			return false;
+		}
 		interval = setInterval(updateSeconds, 1000);
+		return true;
 	}
 
 	// Pause/stop running the timer (note: DOES NOT RESET THE TIMER, MERELY FREEZES)

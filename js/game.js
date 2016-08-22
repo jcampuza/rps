@@ -42,7 +42,10 @@ var Game = function() {
 		stopwatch.reset();
 		gameInProgress = true;
 		stopwatch.setTimer();
-		stopwatch.runTimer();
+		var gameStarted = stopwatch.runTimer();
+		if (!gameStarted) {
+			reset();
+		}
 		updateScore();
 	}
 
