@@ -2,7 +2,8 @@ body {
   background-color: #151e28;
   font-size: 18px;
   font-family: Montserrat, 'Arial';
-  color: white; }
+  color: white;
+  margin-bottom: 50px; }
 
 .scoreboard {
   width: 100%;
