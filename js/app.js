@@ -19,10 +19,9 @@ var Timer = function(endCallback) {
 			secondsVal = 0;
 			seconds.innerHTML = "00";
 		} else if (setSeconds.value.length < 2) {
-			seconds.Val
 			seconds.innerHTML = "0" + setSeconds.value;
 		} else if (setSeconds.value > 59) {
-			seconds.innerHTML = setSeconds.value > 69 ? setSeconds.value % 60 : "0" + setSeconds.value;
+			seconds.innerHTML = setSeconds.value > 69 ? setSeconds.value % 60 : "0" + setSeconds.value % 60;
 			setMinutes.value = setMinutes.value ? parseInt(setMinutes.value) + Math.floor(setSeconds.value / 60) : Math.floor(setSeconds.value/60);
 			console.log(setMinutes.value);
 			setSeconds.value = setSeconds.value % 60;
@@ -41,7 +40,7 @@ var Timer = function(endCallback) {
 
 	// Start running the timer (updates every second);
 	function runTimer() {
-		interval = setInterval(updateSeconds, 1000);
+		interval = setInterval(updateSeconds, 50);
 	}
 
 	function stopTimer() {
@@ -71,6 +70,7 @@ var Timer = function(endCallback) {
 		} else if (newVal < 0) {
 			clearInterval(interval);
 			seconds.innerHTML = minutes.innerHTML = "00";
+			reset();
 			if (endCallback && typeof endCallback == "function") endCallback();
 		}
 	}
@@ -78,11 +78,18 @@ var Timer = function(endCallback) {
 	function setEndCallback(callback) {
 		endCallback = callback;
 	}
+
+	function reset() {
+		console.log('resetting timer');
+		$('.timer-set').toggleClass('timer-hide');
+		$('.timer-show').toggleClass('timer-hide');
+	}
 	//public methods, set the timer, and run/start the timer
 	this.setTimer = setTimer;	
 	this.runTimer = runTimer;
 	this.stopTimer = stopTimer;
 	this.setEndCallback = setEndCallback;
+	this.reset = reset;
 }
 
 var Game = function() {
@@ -91,9 +98,10 @@ var Game = function() {
 		ties = document.getElementById('tie'),	
 		playerAction = document.getElementById('player-action'),
 		botAction = document.getElementById('bot-action'),
-		possibleActions = document.querySelectorAll('li'), // Rock, Paper, Scissors
+		possibleActions = document.querySelectorAll('#action'), // Rock, Paper, Scissors
 		boundActions = [];
-		stopwatch =  new Timer(findWinner);
+		stopwatch =  new Timer(findWinner),
+		gameInProgress = false;
 
 	function randomAction() {
 		var actions = {
@@ -109,32 +117,75 @@ var Game = function() {
 		var playerMove = this.innerHTML.toLowerCase();
 		var botMove = randomAction();
 		updateScore(playerMove, botMove);
-		playerAction.src = "img/" + playerMove + ".jpg";
-		botAction.src = "img/" + botMove + ".jpg";
+		playerAction.classList = "fa fa-hand-" + playerMove + "-o fa-5x";
+		botAction.classList = "fa fa-hand-" + botMove + "-o fa-5x";
+	}
+
+	function startGame() {
+		console.log("starting game");
+		disableActions();
+		enableActions();
+		stopwatch.reset();
+		gameInProgress = true;
+		stopwatch.setTimer();
+		stopwatch.runTimer();
+		updateScore();
+	}
+
+	function resumeGame() {
+		console.log("resuming game");
+		if (!gameInProgress) {
+			startGame();
+			return;
+		}
+		disableActions();
+		enableActions();
+		stopwatch.runTimer();
 	}
 
 	function enableActions() {
+		console.log("enabling actions");
 		for (var i = 0; i < possibleActions.length; i++) {
 			var handler = takeAction.bind(possibleActions[i]);
 			boundActions.push(handler);
 			possibleActions[i].addEventListener('click', handler)
 		}
-		stopwatch.setTimer();
-		stopwatch.runTimer(findWinner);
-		console.log(this);
 	}
 
 	function disableActions() {
+		console.log("disabling actions");
 		stopwatch.stopTimer();
-		console.log("what");
 		for (var i = 0; i < possibleActions.length; i++) {
 			possibleActions[i].removeEventListener('click', boundActions[i]);
 		}
 		boundActions = [];
 	}
 
+	function reset() {
+		disableActions();
+		updateScore();
+		if (gameInProgress) {
+			stopwatch.reset();
+		}
+		gameInProgress = false;
+
+	}
+
 	function findWinner() {
-		console.log('SOMEONE WON THE GAME...');
+		gameInProgress = false;
+		disableActions();
+		var winTotal = parseInt(wins.innerHTML),
+			lossTotal = parseInt(losses.innerHTML);
+
+		if (winTotal > lossTotal) {
+			console.log("YOU WIN");
+		} else if (winTotal == lossTotal) {
+			console.log("DRAW");
+		} else {
+			console.log("YOU LOSE :(");
+		}
+
+		return;
 	}
 
 	function updateScore() {
@@ -168,8 +219,10 @@ var Game = function() {
 		}
 	}
 
-	this.enableActions = enableActions;
+	this.startGame = startGame;
+	this.resumeGame = resumeGame;
 	this.disableActions = disableActions;
+	this.reset = reset;
 }
 
 var roShamBo = new Game();
@@ -178,11 +231,11 @@ form.on('submit', function(e) {
 	e.preventDefault();
 	//stopwatch.setTimer();
 	//stopwatch.runTimer();
-	roShamBo.enableActions();
+	roShamBo.startGame();
 });
 
 play.on('click', function(e) {
-	roShamBo.enableActions();
+	roShamBo.resumeGame();
 });
 
 pause.on('click', function(e) {
@@ -190,5 +243,5 @@ pause.on('click', function(e) {
 })
 
 reset.on('click', function(e) {
-	roShamBo.disableActions();
+	roShamBo.reset();
 })

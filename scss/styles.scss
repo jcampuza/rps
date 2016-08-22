@@ -1,159 +1,148 @@
 //CSS Breakpoints 1000px, 760px, 480px
-
+$primary: #151e28;
+$light: #35b197;
+$secondary: #1a2632;
+$white: #ffffff;
 
 body {
-	background-color: #343838;
+	background-color: $primary;
 	font-size: 18px;
 	font-family: Montserrat, 'Arial';
-	color: #fff;
+	color: white;
+
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, p, span {
-	margin: 0;
-	padding: 0;
-}
-h1 {
-	font-size: 40px;
-	word-spacing: 20px;
-}
-h2 {
-	font-size: 32px;
-}
-h3 {
-	font-size: 27px;
-}
-h4 {
-	font-size: 23px;
-}
-h5 {
-	font-size: 20px;
-}
-/* header styles */
 header {
-	background-color: #005F6B;
 	width: 100%;
+	height: 45px;
 	text-align: center;
-	padding: 5px 0 5px 0;
-	margin-bottom: 35px;
+	background-color: $secondary;
+	position: fixed;
+	top: 0;
+	color: $white;
+	margin-bottom: 45px;
 }
 
-.content {
-	width: 1170px;
+.scoreboard {
+	width: 100%;
+	background-color: $secondary;
+	display: flex;
+	margin-bottom: 15px;
+
+	.score {
+		display: inline-block;
+		width: 33.33%;
+		background-color: $light;
+		margin: 0;
+		padding: 10px;
+		text-align: center;
+	}
+}
+
+.game {
 	margin: 0 auto;
-}
-
-.player-container {
-	width: 100%;
-	color: #343838;
-	height: 250px;
-	margin: 0 auto 35px;
+	width: 70%;
 	text-align: center;
+	height: 65vh;
+
 	.player {
-		position: relative;
-		display: inline-block;
-		vertical-align: top;
-		background-color: white;
-		height: 250px;
-		width: 40%;
-		margin: 0 30px;
-		border: 2px solid #005F6B;
-		border-radius: 2px;
-		text-align: center;
-		.title {
-			width: 100%;
-			background-color: gray;
-			box-shadow: 0px 1px 2px black;
-		}
-
-		.last-action {
-			position: absolute;
-			left: 35%;
-			top: 20%;
-			height: 60%;
-			img {
-				height: 100%;
-			}
-		}
-		.actions {
-			list-style-type: none;
-			padding: 0;
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-			margin: 0 auto 10px;
-			left: 0;
-			li {
-				-webkit-user-select: none;
-				color: #fff;
-				cursor: pointer;
-				display: block;
-				float: left;
-				background-color: #005F6B;
-				padding: 0;
-				width: 25%;
-				padding: 5px;
-				margin: 0 3%;
-				border-radius: 2px;
-			}
-		}
-	}
-}
-
-.player-records {
-	width: 100%;
-	text-align: center;
-	margin-bottom: 25px;
-	.player-stat {
-		display: inline-block;
-		vertical-align: top;
-		color: red;
-		background-color: rgba(0,0,0,.8);
-		margin: 0 55px;
-		width: 150px;
-		height: 75px;
-		border-radius: 2px;
-		border: 1px solid white;
-		label {
-			display: block;
-			width: 100%;
-			background-color: gray;
-			color: #343838;
-		}
-	}
-}
-
-.player-actions {
-	width: 1170px;
-	margin: 0 auto 35px;
-	.action {
-		background-color: #008C9E;
-		display: inline-block;
-		width: 33%;
-		text-align: center;
-		border-radius: 2px;
-		cursor: pointer;
-		&:active {
-			background-color: #00B4CC;
-		}
+		background-color: $secondary;
+		margin: 0;
+		margin-bottom: 15px;
+		padding: 10px;
 	}
 }
 
 .timer {
-	width: 1170px;
-	margin: 0 auto;
-	text-align: center;
-	input {
+  font-size: 30px;
+  border: 2px inset gray;
+  display: inline-block;
+  padding: 0;
+  &:hover {
+  	background-color: $secondary;
+  }
+}
+
+.timer-input {
+  text-align: center;
+  line-height: 2;
+  font-size: 20px;
+  width: 82px;
+  margin: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $white;
+  
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.timer-hide {  
+	display: none;
+}
+
+.timer-display {
+  display: inline-block;
+  text-align: center;
+  font-size: 22px;
+  width: 82px;
+  height: 100%;
+  margin: 0;
+  line-height: 2;
+  color: $white;
+}
+
+.button-set {
+	display: inline-block;
+	margin: 0 auto 15px;
+	button {
+		width: 46px;
+		font-size: 22px;
+		margin: 0;
+		padding: 0;
+		line-height: 2;
+		&#play {background-color: #85d9a6;}
+		&#reset {background-color: #d55649;}
+		&#pause {background-color: #b5b52b;}
+	}
+}
+
+.actions {
+	background-color: $secondary;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	li {
+		-webkit-user-select: none;
+		cursor: pointer;
+		background-color: $light;
+		width: 33.3%;
+		margin: 10px;
+		padding: 10px;
 		text-align: center;
-		margin: 0 40px;;
+		&:hover {
+			background-color: lighten($light, 15)
+		}
+		&:active {
+			background-color: #f66e3a;
+		}
 	}
-	.display {
-		color: red;
-		background-color: rgba(0,0,0,.8);
-		margin: 30px auto;
-		width: 150px;
-		height: 50px;
-		border-radius: 2px;
-		border: 1px solid white;
-	}
+}
+
+.content {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.fa-size {
+	font-size: 65px;
 }
