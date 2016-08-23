@@ -31,8 +31,10 @@ var Game = function() {
 		var playerMove = this.innerHTML.toLowerCase();
 		var botMove = randomAction();
 		updateScore(playerMove, botMove);
-		playerAction.classList = "fa fa-hand-" + playerMove + "-o fa-5x";
-		botAction.classList = "fa fa-hand-" + botMove + "-o fa-5x";
+		playerAction.classList.remove('fa-hand-paper-o', 'fa-hand-scissors-o', 'fa-hand-rock-o')
+		playerAction.classList.add('fa-hand-' + playerMove + '-o');
+		botAction.classList.remove('fa-hand-paper-o', 'fa-hand-scissors-o', 'fa-hand-rock-o')
+		botAction.classList.add('fa-hand-' + botMove + '-o');
 	}
 
 	// Start the game. Disables all previously bound event listeners, rebinds the event listeners,
