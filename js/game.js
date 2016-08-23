@@ -1,5 +1,5 @@
 /* Game logic for RoShamBo/Rock Paper Scissors */
-var clickEvent = ((document.ontouchstart===null)?'click':'touchstart');
+var clickEvent = ((document.ontouchstart!==null)?'click':'touchstart');
 console.log(clickEvent)
 var Game = function() {
 	var wins = document.getElementById('win'),
