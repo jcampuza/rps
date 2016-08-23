@@ -1,6 +1,7 @@
 /* Separate Timer object to control the timing part of the game. Code for the game logic
  * was separated from the timer, since it is almost like a separate entity
  */
+
 var Timer = function(endCallback) {
 	var seconds = document.getElementById('seconds'),
 	minutes = document.getElementById('minutes'),

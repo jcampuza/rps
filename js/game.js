@@ -1,4 +1,6 @@
 /* Game logic for RoShamBo/Rock Paper Scissors */
+var clickEvent = ((document.ontouchstart!==null)?'click':'touchstart');
+
 var Game = function() {
 	var wins = document.getElementById('win'),
 		losses = document.getElementById('loss'),
@@ -35,7 +37,7 @@ var Game = function() {
 
 	// Start the game. Disables all previously bound event listeners, rebinds the event listeners,
 	// resets the timer, sets the game to being in progress, sets the timer based on current inputs,
-	// starts the timer, and resets the scoreboard.
+	// starts the timer, and resets the scoreboard. If the timer didn't start, reset the game.
 	function startGame() {
 		disableActions();
 		enableActions();
@@ -66,7 +68,7 @@ var Game = function() {
 		for (var i = 0; i < possibleActions.length; i++) {
 			var handler = takeAction.bind(possibleActions[i]);
 			boundActions.push(handler);
-			possibleActions[i].addEventListener('click', handler)
+			possibleActions[i].addEventListener(clickEvent, handler)
 		}
 	}
 
@@ -75,7 +77,7 @@ var Game = function() {
 	function disableActions() {
 		stopwatch.stopTimer();
 		for (var i = 0; i < possibleActions.length; i++) {
-			possibleActions[i].removeEventListener('click', boundActions[i]);
+			possibleActions[i].removeEventListener(clickEvent, boundActions[i]);
 		}
 		boundActions = [];
 	}
